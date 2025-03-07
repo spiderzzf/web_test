@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: test
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkins-svc-node
+  namespace: test
+spec:
+  ports:
+  - name: 8062-30008
+    port: 8062
+    nodePort: 30008
+  selector:
+    app: py-web-test
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: py-web-test-deploy
+  namespace: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: py-web-test
+  template:
+    metadata:
+      labels:
+        app: py-web-test
+    spec:
+      containers:
+      - name: py-web-test
+        image: 192.168.132.129:5000/web_test:latest
+        env:
+        - key: version
+          value: 1.0
+        ports:
+        - containerPort: 8062
