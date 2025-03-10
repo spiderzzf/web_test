@@ -37,6 +37,6 @@ spec:
         image: 192.168.132.129:5000/web_test:latest
         env:
         - name: version
-          value: '2.0'
+          value: '4.0'
         ports:
         - containerPort: 8062
