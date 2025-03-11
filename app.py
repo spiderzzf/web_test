@@ -7,5 +7,5 @@ def test():
 
     return {"Hello": "World"}
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',port=8062,threaded=False)  # 运行app
+    app.run(host='0.0.0.0',port=8063,threaded=False)  # 运行app
 
